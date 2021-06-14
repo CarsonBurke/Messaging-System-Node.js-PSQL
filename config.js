@@ -7,7 +7,7 @@ let tables = [{
 },
 {
     name: "chats",
-    content: "email VARCHAR (50), message VARCHAR (2000)"
+    content: "chat_id SERIAL, chat_name VARCHAR (50), email VARCHAR (50), message VARCHAR (2000)"
 }]
 
 let pool = new Pool({

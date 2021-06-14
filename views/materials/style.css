@@ -927,6 +927,62 @@ body {
     background: var(--secondaryShade);
 }
 
+/*MENU*/
+
+.menuContainer {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.menuParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+flex-wrap: wrap;
+}
+
+.menuChild {
+    margin: 6px;
+    background-color: white;
+    box-shadow:  rgba(0, 0, 0, 0.12) 0 4px 30px 0;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: box-shadow 0.5s, background-color 0.2s, color 0.5s;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    color: black;
+}
+
+.menuChild:hover {
+    color: white;
+    background: var(--primary);
+    box-shadow: rgba(0, 0, 0, 0.18) 0 4px 50px 0, rgba(0, 0, 0, 0.38) 0 2px 8px 0;
+}
+
+.menuChild:focus {
+    color: white;
+    background: var(--primary);
+    box-shadow: rgba(0, 0, 0, 0.28) 0 4px 50px 0, rgba(0, 0, 0, 0.25) 0 5px 50px 0;
+}
+
+.chatName {
+
+}
+
+.chatMembers {
+
+}
+
+/*MESSAGES*/
+
+
 
 /*FOOTER*/
 

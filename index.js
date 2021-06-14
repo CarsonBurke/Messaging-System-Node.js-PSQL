@@ -48,37 +48,60 @@ app.post('/signup', async function(req, res, next) {
         return
     }
 
-    function generateHash(password) {
-        const hash = bcrypt.hashSync(password, 10)
+    function checkIfEmailExists(email) {
+        return new Promise((resolve, reject) => {
+            client.query("SELECT * FROM users WHERE email = $1", [email], function(err, res) {
 
-        return hash
+                if (res.rows[0]) {
+
+                    resolve(true)
+                } else {
+
+                    resolve(false)
+                }
+            })
+        })
     }
 
-    let insertAccount = new Promise((resolve, reject) => {
-        client.query("INSERT INTO users(username, email, hash) VALUES($1, $2, $3) RETURNING user_id", [username, email, generateHash(password)], (err, res) => {
+    if (await checkIfEmailExists(email) == false) {
 
-            if (res) {
-
-                resolve(res.rows[0].user_id)
-            } else if (err) {
-
-                resolve(false)
-            }
+        function generateHash(password) {
+            const hash = bcrypt.hashSync(password, 10)
+    
+            return hash
+        }
+    
+        let insertAccount = new Promise((resolve, reject) => {
+            client.query("INSERT INTO users(username, email, hash) VALUES($1, $2, $3) RETURNING user_id", [username, email, generateHash(password)], (err, res) => {
+    
+                if (res) {
+    
+                    resolve(res.rows[0].user_id)
+                } else if (err) {
+    
+                    resolve(false)
+                }
+            })
         })
-    })
-
-    insertAccount = await insertAccount
-
-    if (insertAccount != false) {
-
-        console.log("signup up with user_id: " + insertAccount)
-
-        req.session.user_id = insertAccount
-
-        res.redirect("/profiles/" + req.session.user_id)
-
-        next()
-    } else {
+    
+        insertAccount = await insertAccount
+    
+        if (insertAccount != false) {
+    
+            console.log("signup up with user_id: " + insertAccount)
+    
+            req.session.user_id = insertAccount
+    
+            res.redirect("/profiles/" + req.session.user_id)
+    
+            next()
+        } else {
+    
+            res.redirect("/")
+            next()
+        }
+    }
+    else {
 
         res.redirect("/")
         next()
@@ -235,6 +258,19 @@ app.get('/information', async function(req, res) {
     })
 })
 
+app.get('/menu', async function(req, res) {
+
+    res.render(__dirname + "/views/menu.ejs", {
+        userAccount: await returnIfAccount(req.session.user_id),
+    })
+})
+
+app.get('/chats/:chat_id', async function(req, res) {
+
+    res.render(__dirname + "/views/chat.ejs", {
+        userAccount: await returnIfAccount(req.session.user_id),
+    })
+})
 
 app.get('/logout', function(req, res, next) {
 

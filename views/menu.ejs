@@ -1,5 +1,28 @@
 <%- include('./navbar.ejs', {page: "Menu", userAccount: userAccount}) %>
 
+<div class="menuContainer">
+    <div class="menuParent">
+        <a href="#" class="menuChild">
+            <h2 class="chatName">Chat Name</h2>
 
+            <div class="chatMembers">
+                <div class="memberParent">
+                    <img src="landingImage.png" alt="" class="memberImage">
+                    <h3 class="memberName">Name</h3>
+                </div>
+            </div>
+        </a>
+        <a href="#" class="menuChild">
+            <h2 class="chatName">Chat Name</h2>
 
-    <%- include('./footer.ejs'); %>
+            <div class="chatMembers">
+                <div class="memberParent">
+                    <img src="landingImage.png" alt="" class="memberImage">
+                    <h3 class="memberName">Name</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<%- include('./footer.ejs'); %>
