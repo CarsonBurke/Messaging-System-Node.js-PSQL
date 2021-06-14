@@ -672,7 +672,7 @@ body {
     margin: 0;
     text-transform: uppercase;
     font-size: 52px;
-    color: var(--primary);
+    color: white;
 }
 
 .landingText {
