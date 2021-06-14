@@ -1,0 +1,34 @@
+<%- include('./navbar.ejs', {page: "Information", userAccount: userAccount}) %>
+
+    <div class="infoTableOuter">
+        <table class="infoTable">
+            <thead>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Hash</th>
+            </thead>
+            <tbody id="place-here">
+                <% accounts.forEach(function(account) { %>
+                    <tr>
+                        <td>
+                            <a class="button" href="/profiles/<%= account.user_id %>">
+                                <%= account.user_id %>
+                            </a>
+                        </td>
+                        <td>
+                            <%= account.username %>
+                        </td>
+                        <td>
+                            <%= account.email %>
+                        </td>
+                        <td>
+                            <%= account.hash %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+    <%- include('./footer.ejs'); %>

@@ -1,0 +1,53 @@
+<%- include('./navbar.ejs', {page:"Home", userAccount: userAccount}) %>
+
+    <div class="landingDiv parallaxifyBg">
+
+        <h1 class="landingHeader animate floatUp">Hello there</h1>
+
+        <p class="landingText animate floatUp">Welcome to Chatr, a free, simple messaging app</p>
+
+        <div class="landingButtonContainer animate floatUp">
+            <% if (userAccount == false) { %>
+                <a class="landingButton" href="#form">Get Started</a>
+                <% } %>
+                    <% if (userAccount != false) { %>
+                        <a class="landingButton" href="/profiles/<%= userAccount.user_id %>">Account</a>
+                        <% } %>
+        </div>
+
+    </div>
+    <% if (userAccount == false) { %>
+        <div class=" formContainer" id="form">
+
+            <div class="form animate floatUp">
+                <div class="formTopper">
+
+                    <h1 class="formHeader selectedHeader" id="signup" onclick="formSelector( 'signup')">Signup</h1>
+                    <h1 class="formHeader" id="login" onclick="formSelector( 'login')">Login</h1>
+
+                </div>
+                <form class="formContent showForm" id="signupForm" action="/signup" method="POST">
+
+                    <input class="formInput" placeholder="Username" type="text" name="username" />
+
+                    <input class="formInput" placeholder="Email" type="email" name="email" />
+
+                    <input class="formInput" placeholder="Password" type="password" name="password" />
+
+                    <button type="submit" class="formButton">Signup</button>
+
+                </form>
+                <form class="formContent" id="loginForm" action="/login" method="POST">
+
+                    <input class="formInput" placeholder="Email" type="email" name="email" />
+
+                    <input class="formInput" placeholder="Password" type="password" name="password" />
+
+                    <button type="submit" class="formButton">Login</button>
+
+                </form>
+            </div>
+        </div>
+        <% } %>
+
+            <%- include('./footer.ejs'); %>
