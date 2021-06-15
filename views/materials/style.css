@@ -935,6 +935,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+    background: var(--secondaryShade);
 }
 .menuParent {
     display: flex;
@@ -953,24 +954,24 @@ flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    transition: box-shadow 0.5s, background-color 0.2s, color 0.5s;
     cursor: pointer;
     user-select: none;
     text-decoration: none;
     color: black;
+    transition: all 0.3s;
 }
 
 .menuChild:hover {
-    color: white;
-    background: var(--primary);
-    box-shadow: rgba(0, 0, 0, 0.18) 0 4px 50px 0, rgba(0, 0, 0, 0.38) 0 2px 8px 0;
+    background: #eeeff0;
+    box-shadow: rgba(0, 0, 0, 0.08) 0 4px 30px 0;
 }
 
 .menuChild:focus {
-    color: white;
-    background: var(--primary);
-    box-shadow: rgba(0, 0, 0, 0.28) 0 4px 50px 0, rgba(0, 0, 0, 0.25) 0 5px 50px 0;
+    background: #eeeff0;
+    box-shadow: none;
+    box-shadow: white 0 0 0 1.2px;
 }
+
 
 .chatName {
 
@@ -988,6 +989,8 @@ flex-wrap: wrap;
     height: 200px;
 }
 .newChatChild {
+    box-shadow:  rgba(0, 0, 0, 0.12) 0 4px 30px 0;
+    background: white;
     line-height: 50px;
     font-size: 50px;
     width: 50px;
@@ -999,12 +1002,13 @@ flex-wrap: wrap;
     user-select: none;
 }
 .newChatChild:hover {
+    background: #eeeff0;
     box-shadow: rgba(0, 0, 0, 0.12) 0 2px 12px 0;
 }
 .newChatChild:focus {
     background-color: var(--primary);
     color: white;
-    box-shadow: rgba(0, 0, 0, 0.3) 0 5px 22px 0;
+    box-shadow: rgba(0, 0, 0, 0.38) 0 2px 12px 0;
 }
 
 /*MESSAGES*/
