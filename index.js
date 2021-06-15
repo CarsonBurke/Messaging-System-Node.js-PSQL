@@ -225,9 +225,6 @@ function enforceAccount(req, res, next) {
 
         console.log('not logged in, redirected to /#form')
         res.redirect("/#form")
-    } else {
-
-        next()
     }
 }
 
@@ -249,7 +246,7 @@ app.get('/', async function(req, res) {
     })
 })
 
-app.get('/information', async function(req, res) {
+app.get('/information', async function(req, res, next) {
 
     res.render(__dirname + "/views/information.ejs", {
 
@@ -259,6 +256,12 @@ app.get('/information', async function(req, res) {
 })
 
 app.get('/menu', async function(req, res) {
+
+    if (isUser(req) == false) {
+
+        //res.redirect("/#form")
+        //return
+    }
 
     res.render(__dirname + "/views/menu.ejs", {
         userAccount: await returnIfAccount(req.session.user_id),

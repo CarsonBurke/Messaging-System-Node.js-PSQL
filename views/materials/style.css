@@ -980,6 +980,33 @@ flex-wrap: wrap;
 
 }
 
+.newChatParent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 200px;
+}
+.newChatChild {
+    line-height: 50px;
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    user-select: none;
+}
+.newChatChild:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0 2px 12px 0;
+}
+.newChatChild:focus {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 5px 22px 0;
+}
+
 /*MESSAGES*/
 
 
