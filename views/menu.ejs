@@ -3,8 +3,46 @@
 <div class="menuContainer">
     <div class="menuParent">
         <div class="newChatParent">
-            <button class="newChatChild">+</button>
+            <button class="newChatChild" onclick="newChatDisplayParentToggle()">+</button>
         </div>
+        <div class="newChatDisplayParent">
+
+            <h3 class="newChatDisplayHeader">Create a Chat</h3>
+
+            <form class="newChatDisplayParentContent" action="/newChat" method="POST">
+
+                <input class="formInput" placeholder="Name" type="text" name="name" />
+
+                <input class="formInput" placeholder="Member Ids: id1, id2, etc." type="text" name="members" />
+
+<div class="newChatButtonContainer">
+
+    <h3 onclick="newChatDisplayParentToggle()" class="formButton closeButton">x</h3>
+
+    <button type="submit" class="formButton">Create Chat</button>
+
+</div>
+
+            </form>
+        </div>
+        <% if (chats) { %>
+        <% chats.forEach(function(chat) { %>
+            <a href="/chat/<%= chat.id %>" class="menuChild">
+                <h2 class="chatName"><%= chat.name %></h2>
+    
+                <div class="chatMembers">
+                <!--
+                    <% chat.members.forEach(function(member) { %>
+                    <div class="memberParent">
+                        <img src="landingImage.png" alt="" class="memberImage">
+                        <h3 class="memberName"><%= member.name %></h3>
+                    </div>
+                    <% }) %>
+                -->
+                </div>
+            </a>
+            <% }) %>
+            <% } %>
         <a href="#" class="menuChild">
             <h2 class="chatName">Chat Name</h2>
 

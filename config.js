@@ -7,8 +7,9 @@ let tables = [{
 },
 {
     name: "chats",
-    content: "chat_id SERIAL, chat_name VARCHAR (50), email VARCHAR (50), message VARCHAR (2000)"
-}]
+    content: "owner_id VARCHAR, chat_id SERIAL, name VARCHAR (50), member_ids text ARRAY"
+},
+]
 
 let pool = new Pool({
     user: process.env.USER,

@@ -772,7 +772,7 @@ body {
     font-size: 17px;
     border-radius: 6px;
     transition: all 0.3s;
-    margin: 20px 0;
+    margin: 20px auto;
     box-shadow: rgba(0, 0, 0, 0.22) 0 12px 24px 0;
     background: var(--primary);
     color: white;
@@ -1009,6 +1009,63 @@ flex-wrap: wrap;
     background-color: var(--primary);
     color: white;
     box-shadow: rgba(0, 0, 0, 0.38) 0 2px 12px 0;
+}
+
+.newChatDisplayParent {
+
+    position: absolute;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0) 0 0 0 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    top: -25px;
+    bottom: 0;
+    height: fit-content;
+    margin: auto;
+}
+
+.newChatDisplayParentShow {
+    top: 0;
+    opacity: 1;
+    pointer-events: all;
+    box-shadow: rgba(0, 0, 0, 0.26) 0 6px 30px 0, rgba(0, 0, 0, 0.3) 0 0 0 10000px;
+}
+
+.newChatDisplayHeader {
+    background: #eeeff0;
+    font-size: 28px;
+    margin: 0;
+    padding: 24px 12px;
+}
+
+.newChatDisplayParentContent {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.newChatButtonContainer {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.newChatButtonContainer button {
+
+    margin: 5px;
+}
+
+.closeButton {
+    line-height: 46px;
+    margin: 5px;
+    padding: 0 25px;
+    width: fit-content;
+    background: red;
+}
+.closeButton:focus {
+    background: red;
 }
 
 /*MESSAGES*/

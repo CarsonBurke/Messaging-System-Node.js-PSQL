@@ -37,3 +37,8 @@ function navbardivactivate() {
     document.getElementById("bar3").classList.toggle("barclick3")
 
 }
+
+function newChatDisplayParentToggle() {
+
+    document.getElementsByClassName("newChatDisplayParent")[0].classList.toggle("newChatDisplayParentShow")
+}

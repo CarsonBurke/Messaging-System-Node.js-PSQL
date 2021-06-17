@@ -151,6 +151,45 @@ app.post('/login', async function(req, res, next) {
     }
 })
 
+app.post('/newChat', async function(req, res, next) {
+
+    let name = req.body.name
+    let members = req.body.members
+
+    let insertChat = new Promise((resolve, reject) => {
+        client.query("INSERT INTO chats(name, member_ids) VALUES($1, $2) RETURNING chat_id", [name, + members], (err, res) => {
+
+            if (res) {
+
+                resolve(res.rows[0].chat_id)
+
+            } else if (err) {
+
+                console.log(err)
+
+                resolve(false)
+            }
+        })
+    })
+
+    insertChat = await insertChat
+
+    console.log(insertChat)
+
+    if (insertChat != false) {
+
+        console.log("Created a chat with chat_id: " + insertChat)
+
+        res.redirect("/chat/" + insertChat)
+        next()
+    }
+    else {
+
+        res.redirect("/menu")
+        next()
+    }
+})
+
 function accounts() {
     return new Promise((resolve, reject) => {
         client.query("TABLE users", function(err, res) {
@@ -197,6 +236,21 @@ function findAccountWithId(id) {
                 resolve(res.rows[0])
             }
         })
+    })
+}
+
+function findChats(id) {
+    return new Promise((resolve, reject) => {
+            client.query("SELECT * FROM chats WHERE owner_id = $1", [id], function(err, res) {
+
+                if (res.rows[0]) {
+
+                    resolve(res.rows)
+                } else {
+
+                    resolve(false)
+                }
+            })
     })
 }
 
@@ -259,11 +313,12 @@ app.get('/menu', async function(req, res) {
 
     if (isUser(req) == false) {
 
-        //res.redirect("/#form")
-        //return
+        res.redirect("/#form")
+        return
     }
 
     res.render(__dirname + "/views/menu.ejs", {
+        chats: await findChats(req.session.user_id),
         userAccount: await returnIfAccount(req.session.user_id),
     })
 })
